@@ -11,21 +11,17 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:serious_python/serious_python.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-
+//
 
 const bool isProduction = bool.fromEnvironment('dart.vm.product');
 
 const assetPath = "app/app.zip";
 const pythonModuleName = "main";
-final hideLoadingPage =
-    bool.tryParse("True".toLowerCase()) ??
-        true;
+final hideLoadingPage = bool.tryParse("True".toLowerCase()) ?? true;
 const outLogFilename = "out.log";
 const errorExitCode = 100;
 
-List<CreateControlFactory> createControlFactories = [
-
-];
+List<CreateControlFactory> createControlFactories = [];
 
 const pythonScript = """
 import certifi, os, runpy, socket, sys, traceback
@@ -90,8 +86,6 @@ void main() async {
     debugPrint = (String? message, {int? wrapWidth}) => null;
   }
 
-  
-
   runApp(FutureBuilder(
       future: prepareApp(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -102,8 +96,7 @@ void main() async {
                   pageUrl: pageUrl,
                   assetsDir: assetsDir,
                   hideLoadingPage: hideLoadingPage,
-                  createControlFactories: createControlFactories
-                )
+                  createControlFactories: createControlFactories)
               : FutureBuilder(
                   future: runPythonApp(),
                   builder:
@@ -118,11 +111,10 @@ void main() async {
                     } else {
                       // no result of error
                       return FletApp(
-                        pageUrl: pageUrl,
-                        assetsDir: assetsDir,
-                        hideLoadingPage: hideLoadingPage,
-                        createControlFactories: createControlFactories
-                      );
+                          pageUrl: pageUrl,
+                          assetsDir: assetsDir,
+                          hideLoadingPage: hideLoadingPage,
+                          createControlFactories: createControlFactories);
                     }
                   });
         } else if (snapshot.hasError) {
